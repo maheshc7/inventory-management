@@ -3,7 +3,8 @@
 ## Introduction
 Django REST Framework serving data to front-end dashboards similar to the Kaizntree's item dashboard.
 [Hosted on AWS.](http://34.208.86.103:8000/)
-
+Login to [admin portal](http://34.208.86.103:8000/admin/) use credentails kaizn + kaizntree
+*(Not the best way but should do the trick)*
 
 ## Requirements
 ```bash
