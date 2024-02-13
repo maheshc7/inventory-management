@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "fb637ad2-61f4-416c-9948-dc8d54695e0e",
+		"name": "KaiznTree",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27079101"
+	},
+	"item": [
+		{
+			"name": "GET JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"refresh_token\", pm.response.json()[\"refresh\"])",
+							"pm.collectionVariables.set(\"access_token\", pm.response.json()[\"access\"])"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"test\",\n    \"password\" : \"passwordtest\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/jwt/create/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"jwt",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RESET PASSWORD 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3NzE5MjYwLCJpYXQiOjE3MDc3MDg0NjAsImp0aSI6IjAwMDlhMmJlZTdhZTQ3NDQ5MTc2MmFmOTFjMTI5MzE0IiwidXNlcl9pZCI6NX0.3qr_6LiXJvbpx8bqiRvpIb3qvU4lVp7Ft1IoRROhmB0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\": \"NQ\",\n    \"token\" : \"c29qwr-064e99859dbad69a46c36bd9fb02ed99\",\n    \"new_password\" : \"alpine13\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/users/reset_password_confirm/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"users",
+						"reset_password_confirm",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RESET PASSWORD 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3NzE5MjYwLCJpYXQiOjE3MDc3MDg0NjAsImp0aSI6IjAwMDlhMmJlZTdhZTQ3NDQ5MTc2MmFmOTFjMTI5MzE0IiwidXNlcl9pZCI6NX0.3qr_6LiXJvbpx8bqiRvpIb3qvU4lVp7Ft1IoRROhmB0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mrak4123@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/users/reset_password/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"users",
+						"reset_password",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE USER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"test1@gmail.com\",\n    \"username\" : \"test1\",\n    \"password\" : \"passwordtest1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/users/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ITEMS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT  {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/item/?page=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"item",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD ITEM",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"ABC2\",\n    \"name\": \"Example Item\",\n    \"category\": {\"id\":2, \"name\": \"Finished Product\"},\n    \"in_stock\": 10,\n    \"available_stock\": 8,\n    \"units\" : \"no.\",\n    \"is_component\": true,\n    \"is_purchasable\": true,\n    \"is_salable\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/item/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"item",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CATEGORY",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Finished Product\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/category/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"category",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://34.208.86.103:8000",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
