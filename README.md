@@ -47,7 +47,7 @@ drf-yasg==1.21.7
 
 ## API Documentation
 Provide a link to your API documentation or instructions on how to access it.
-Go to [Swagger Doc](http://localhost:8000/swagger/) or [ReDoc](http://localhost:8000/redoc/) to view the API Docs.
+Go to [Swagger Doc](http://34.208.86.103:8000/swagger/) or [ReDoc](http://34.208.86.103:8000/redoc/) to view the API Docs.
 
 ## API Endpoints
 
