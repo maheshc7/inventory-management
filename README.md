@@ -55,12 +55,10 @@ List and briefly describe the available API endpoints.
 
 ## API Documentation
 Provide a link to your API documentation or instructions on how to access it.
+Go to base_url/swagger/ or base_url/redoc/ to view the API Docs.
 
-## Contributing
-Explain how others can contribute to your project. Include guidelines for submitting issues, feature requests, and pull requests.
-
-## License
-Specify the license under which your project is distributed.
+## Frontend Task:
+[Link to CodeBox](https://codesandbox.io/s/k89fsd)
 
 ## Acknowledgments
 If you have any acknowledgments or credits, mention them here.
