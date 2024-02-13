@@ -72,12 +72,6 @@ DJOSER = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'maheshchoudhary28@outlook.com'  # TODO: Secure this
-EMAIL_HOST_PASSWORD = 'Mahesh@07'  # TODO: Secure this
-DEFAULT_FROM_EMAIL = 'maheshchoudhary28@outlook.com'  # TODO: Secure this
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
