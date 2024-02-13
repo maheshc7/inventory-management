@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import ItemDashboardAPI
+from .views import ItemAPI, CategoryAPI
 
 urlpatterns = [
-    path('item-dashboard/', ItemDashboardAPI.as_view(),
-         name='item-dashboard-api'),
+    path('item/', ItemAPI.as_view(),
+         name='item-api'),
+    path('category/', CategoryAPI.as_view(),
+         name='category-api'),
 ]

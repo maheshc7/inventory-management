@@ -1,33 +1,21 @@
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
 
-class TagManager(models.Manager):
-    pass
-
-
 class Tag(models.Model):
-    objects = TagManager()
     name = models.CharField(max_length=50, unique=True)
     # image_url = models.URLField()
 
 
-class ItemManager(models.Manager):
-    pass
-
-
 class Item(models.Model):
-    objects = ItemManager()
     sku = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=255)
     tags = models.ManyToManyField(Tag)
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=True, blank=True)
+        Category, on_delete=models.CASCADE)
     in_stock = models.PositiveIntegerField(default=0)
     available_stock = models.PositiveIntegerField(default=0)
 

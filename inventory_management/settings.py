@@ -32,7 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_yasg',
     "rest_framework",
+    'djoser',
+    'rest_framework.authtoken',
     "rest_framework_simplejwt",
     "backend.apps.BackendConfig",
     "django.contrib.admin",
@@ -52,12 +55,29 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),  # TODO: Change
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),  # TODO: Change
 }
+
+DJOSER = {
+    "SEND_ACTIVATION_EMAIL": False,
+    "PASSWORD_RESET_CONFIRM_URL": "auth/users/reset_password_confirm/{uid}/{token}",
+    "USERNAME_RESET_CONFIRM_URL": "auth/users/reset_username_confirm/{uid}/{token}",
+    "ACTIVATION_URL": "#/activate/{uid}/{token}",
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'maheshchoudhary28@outlook.com'  # TODO: Secure this
+EMAIL_HOST_PASSWORD = 'Mahesh@07'  # TODO: Secure this
+DEFAULT_FROM_EMAIL = 'maheshchoudhary28@outlook.com'  # TODO: Secure this
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

@@ -5,17 +5,19 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 from django.db.models import Q
-from .models import Item
-from .serializers import ItemSerializer
+from .models import Item, Category
+from .serializers import ItemSerializer, CategorySerializer
 
 
-class ItemDashboardAPI(APIView):
-    authentication_classes = [SessionAuthentication,
-                              BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+class ItemAPI(APIView):
+    # authentication_classes = [SessionAuthentication,
+    #                           BasicAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        paginator = PageNumberPagination()
 
         # Retrieve query parameters
         keyword = request.query_params.get('keyword')
@@ -66,8 +68,8 @@ class ItemDashboardAPI(APIView):
         if net_stock_max is not None:
             queryset = queryset.filter(net_stock__lte=net_stock_max)
 
-        serializer = ItemSerializer(queryset, many=True)
-
+        paginated_queryset = paginator.paginate_queryset(queryset, request)
+        serializer = ItemSerializer(paginated_queryset, many=True)
         # Extracting relevant fields for the dashboard
         data = [
             {
@@ -82,3 +84,31 @@ class ItemDashboardAPI(APIView):
         ]
 
         return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        print("Request: ", request.data)
+        serializer = ItemSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CategoryAPI(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        print("Request: ", request.data)
+        serializer = CategorySerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
