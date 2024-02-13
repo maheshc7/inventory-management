@@ -1,18 +1,25 @@
 # Kaizntree - Inventory Management - Backend Task
 
 ## Introduction
+Django REST Framework serving data to front-end dashboards similar to the Kaizntree's item dashboard.
+[Hosted on AWS.](http://34.208.86.103:8000/)
 
 
-## Prerequisites
-
+## Requirements
+```bash
+Django==5.0.2
+djoser==2.2.2
+djangorestframework==3.14.0
+drf-yasg==1.21.7
+```
 
 ## Getting Started
 
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repo.git
-    cd your-repo
+    git clone git@github.com:maheshc7/inventory-management.git
+    cd inventory_management
     ```
 
 2. **Install Dependencies:**
@@ -38,28 +45,26 @@
 6. **Access the API:**
     Open your browser and go to [http://localhost:8000/](http://localhost:8000/)
 
-## API Endpoints
-List and briefly describe the available API endpoints.
+## API Documentation
+Provide a link to your API documentation or instructions on how to access it.
+Go to [Swagger Doc](http://localhost:8000/swagger/) or [ReDoc](http://localhost:8000/redoc/) to view the API Docs.
 
-- **Endpoint 1:** `/api/endpoint1`
-    - Description: Briefly describe what this endpoint does.
+## API Endpoints
+
+
+- **Endpoint 1:** `/api/item/?category=Raw Materials`
+    - Description: Returns list of items available in the database. Can be filtered and paginated via query parameters.
     - Method: GET
     - Parameters: List any required parameters.
 
-- **Endpoint 2:** `/api/endpoint2`
-    - Description: Briefly describe what this endpoint does.
+- **Endpoint 2:** `/api/item`
+    - Description: Add/Create new item.
     - Method: POST
-    - Parameters: List any required parameters.
+    - Parameters: See swagger doc.
 
 ...
-
-## API Documentation
-Provide a link to your API documentation or instructions on how to access it.
-Go to base_url/swagger/ or base_url/redoc/ to view the API Docs.
 
 ## Frontend Task:
 [Link to CodeBox](https://codesandbox.io/s/k89fsd)
 
-## Acknowledgments
-If you have any acknowledgments or credits, mention them here.
 
